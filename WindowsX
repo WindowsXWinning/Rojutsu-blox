@@ -1,0 +1,115 @@
+local lp = game:service"Players".LocalPlayer;
+local breakgame = 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/WhiteGravys/GuiBypass/main/Skidded", true))();
+
+function Antikick()
+    local mt = getrawmetatable(game)
+    local old = mt.namecall
+
+    setreadonly(mt, false)
+    mt.namecall = function(self, ...)
+        local method = getnamecallmethod()
+        if method == "Kick" then
+            return
+        end
+        return old(self, ...)
+    end
+end
+
+function WSBypass()
+    local gmt = getrawmetatable(game)
+    setreadonly(gmt, false)
+    local oldindex = gmt.__index
+
+    gmt.__index =
+        newcclosure(
+        function(self, b)
+            if b == "WalkSpeed" then
+                return 16
+            end
+            return oldindex(self, b)
+        end
+    )
+end
+
+WSBypass()
+Antikick()
+
+local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/Vape.txt")()
+
+local win = lib:Window("Windows X",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+
+local tab = win:Tab("Auto Farming")
+
+local tab2 = win:Tab("Misc")
+
+tab:Toggle("Auto Farm",false, function(yes)
+    getgenv().AutoFarm = yes;
+    getgenv().Quest = MobToFarm;
+    
+    loadstring(game:HttpGet("https://pastebin.com/raw/rgvFLX67", true))();
+end)
+
+tab:Dropdown("Mobs",{"Training Dummy","Metal Training Dummy","Grade 1 Curse","Grade 2 Curse","Unique Grade","Corrupt Sorcerer"}, function(Mob)
+MobToFarm = Mob
+end)
+
+
+
+tab2:Toggle("Anti Mod",false, function(hii)
+    getgenv().AntiMod = hii
+end)
+
+tab2:Toggle("Inf Stats",false, function(lol)
+    workspace.EventHolder.AddPoints.Reactor:FireServer("Points", 0/0)
+    local args = {
+    [1] = "Strength",
+    [2] = breakgame
+}
+
+workspace.EventHolder.AddPoints.Reactor:FireServer(unpack(args))
+local args = {
+     [1] = "Endurance",
+     [2] = breakgame
+                 }
+
+        workspace.EventHolder.AddPoints.Reactor:FireServer(unpack(args))
+        local args = {
+        [1] = "Mana",
+        [2] = breakgame
+                 }
+    
+        workspace.EventHolder.AddPoints.Reactor:FireServer(unpack(args))
+    
+end)
+
+tab:Label("Made By Windows X")
+
+while getgenv().AntiMod do
+    while true do
+        task.wait(0.5)
+        local groupId = 6519834
+        local roles = {"Lead Developer", "Developer", "Contributors", "Honorary Tester", "Community Officer"};
+        
+        for i,v in pairs(game:service"Players":GetPlayers()) do
+            if roles[v:GetRoleInGroup(groupId)] then
+                game:service"Players".LocalPlayer:Kick("Mod is in the server");
+            end
+        end
+        
+        game:service"Players".PlayerAdded:Connect(function(p)
+            if roles[p:GetRoleInGroup(groupId)] then
+                game:service"Players".LocalPlayer:Kick("Mod joined the server");
+            end
+        end)
+    end
+end
+
+getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+    if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
+        game:GetService("TeleportService"):Teleport(game.PlaceId)
+    end
+end)
+
+syn.queue_on_teleport(game:HttpGet("https://raw.githubusercontent.com/WhiteGravys/Rojutsu-Blox/main/Windows-X/AutoFarm/Hentai-Fan"));
